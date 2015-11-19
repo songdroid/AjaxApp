@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script>
+	function fnSubmit(){
+		var userNum = document.getElementById("userNum").value;
+		document.getElementById("hiddenFrame").src = 
+			"basic07_1.jsp?userNum=" + userNum;
+	}
+	
+	function setUserData(name, gender, addr, tel){
+		document.getElementById("userName").value = name;
+		document.getElementById("userGender").value = gender;
+		document.getElementById("userAddr").value = addr;
+		document.getElementById("userTel").value = tel;
+	}
+</script>
+</head>
+<body>
+<h2>회원 정보 조회</h2>
+회원번호 : <input type="text" name="userNum" id="userNum" onkeyup="fnSubmit();"/>
+<br/><br/>
+이름 : <input type="text" name="userName" id="userName" />
+<br/><br/>
+성별 : <input type="text" name="userGender" id="userGender" />
+<br/><br/>
+주소 : <input type="text" name="userAddr" id="userAddr" />
+<br/><br/>
+전화번호 : <input type="text" name="userTel" id="userTel" />
+<br/><br/>
+<iframe id="hiddenFrame" style="width:500px; height:500px; border:0px"/>
+</body>
+</html>

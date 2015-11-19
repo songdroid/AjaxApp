@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script src="ajax.js"></script>
+<script>
+	function fnSubmit(){
+		var param = "name=" + document.getElementById("name").value;
+		sendRequest("POST", "basic01_proc.jsp", param, callback);
+	}
+	
+	function callback(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				var div = document.getElementById("display");
+				div.innerHTML = httpRequest.responseText;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<input type="text" name="name" id="name" />
+<input type="button" value="전송" onclick="fnSubmit()" />
+<hr/>
+<div id="display"></div>
+</body>
+</html>

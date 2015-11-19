@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script>
+	var httpRequest = null;
+	
+	function fnProcess(url){
+		httpRequest = new XMLHttpRequest();	
+		
+		httpRequest.open("GET", url, true);
+		httpRequest.onreadystatechange = fnCallback;
+		httpRequest.send(null);
+	}
+	
+	function fnCallback(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				alert(httpRequest.responseText);
+			}
+			else{
+				alert(httpRequest.status);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<input type="button" value="euc-msg.txt" 
+				onclick="fnProcess('euc-msg.txt')"/><br/><br/>
+<input type="button" value="utf-msg.txt" 
+				onclick="fnProcess('utf-msg.txt')"/><br/><br/>
+<input type="button" value="euc-msg.jsp" 
+				onclick="fnProcess('euc-msg.jsp')"/><br/><br/>
+<input type="button" value="utf-msg.jsp" 
+				onclick="fnProcess('utf-msg.jsp')"/><br/><br/>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
