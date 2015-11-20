@@ -19,4 +19,24 @@
   	<servlet-name>ascii</servlet-name>
   	<url-pattern>/ascii.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>valid</servlet-name>
+  	<servlet-class>myajax.ValidateServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>valid</servlet-name>
+  	<url-pattern>/valid.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>dynamic</servlet-name>
+  	<servlet-class>myajax.DynamicServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>dynamic</servlet-name>
+  	<url-pattern>/dynamic.do</url-pattern>
+  </servlet-mapping>
 </web-app>

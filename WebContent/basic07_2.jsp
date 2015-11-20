@@ -26,18 +26,6 @@
 	}
 %>
 <%=name%>,<%=gender%>,<%=addr%>,<%=tel%> 
-<script>
-	function fnSetting(){
-		var name = "<%=name%>";
-		var gender = "<%=gender%>";
-		var addr = "<%=addr%>";
-		var tel = "<%=tel%>";
-		
-		top.setUserData(name, gender, addr, tel);
-	}
-	
-	window.onload = function(){ fnSetting(); }
-</script>
 
 
 

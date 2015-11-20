@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script src="ajax.js"></script>
+<script>
+	function fnSubmit(){
+		sendRequest("GET", "book.jsp", null, fnCallback);
+	}
+	
+	function fnCallback(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				var data = httpRequest.responseXML;
+				var booklist = data.getElementsByTagName("book");
+				var msg = "책 권수 : " + booklist.length + "권\n";
+				
+				for(var i=0; i<booklist.length; i++){
+					var book = booklist.item(i);
+					var title = book.getElementsByTagName("title").item(0).firstChild.nodeValue;
+					var author = book.getElementsByTagName("author").item(0).firstChild.nodeValue;;
+					
+					msg += title + "(" + author + ")\n";
+				}
+				
+				alert(msg);
+			}
+		}
+	}
+	
+	window.onload = function(){ fnSubmit(); }
+</script>
+</head>
+<body>
+</body>
+</html>

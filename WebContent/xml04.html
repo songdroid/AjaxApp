@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script src="ajax.js"></script>
+<script>
+	function fnSubmit(){
+		var param = "task=reset";
+		sendRequest("GET", "/AjaxApp/dynamic.do", param, fnCallback);
+	}
+	
+	function fnCallback(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				setInterval(pullServer, 5000);
+			}
+		}
+	}
+	
+	function pullServer(){
+		var param = "task=bravo";
+		sendRequest("GET", "/AjaxApp/dynamic.do", param, fnCallback2);
+	}
+	
+	function fnCallback2(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				//document.getElementById("test").innerHTML =
+				//	httpRequest.responseText;
+				var data = httpRequest.responseXML;
+				var msg = data.getElementsByTagName("message").item(0).firstChild.nodeValue;
+				//alert(msg);
+				
+				var table = document.getElementById("dynamicUpdateArea");
+				var tbody = table.getElementsByTagName("tbody").item(0);
+				var first_row = tbody.getElementsByTagName("tr").item(0);
+				
+				var new_row = createRow(msg);
+				tbody.insertBefore(new_row, first_row);
+			}
+		}
+	}
+	
+	function createRow(msg){
+		var row = document.createElement("tr");
+		var cell = document.createElement("td");
+		var cell_data = document.createTextNode(msg);
+		
+		cell.appendChild(cell_data);
+		row.appendChild(cell);
+		return row;
+	}
+</script>
+</head>
+<body>
+<h1>이 페이지는 자동으로 업데이트 됩니다.</h1>
+<input type="button" value="실행" id="go" onclick="fnSubmit()"/>
+<br/><br/>
+이 페이지는 <span id="time">5</span>초 후에 갱신됩니다.
+<br/><br/>
+<table id="dynamicUpdateArea">
+	<tbody>
+		<tr id="row"><td></td></tr>
+	</tbody>
+</table>
+<br/><br/>
+<div id="test"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
