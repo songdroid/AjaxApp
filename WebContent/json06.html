@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<script src="ajax.js"></script>
+<script>
+	function fnSubmit(){
+		sendRequest("GET", "member_xml_json.jsp", null, fnCallback)
+	}
+	
+	function fnCallback(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				var xmlDoc = httpRequest.responseXML;
+				var code = xmlDoc.getElementsByTagName("code")[0].firstChild.nodeValue;
+						
+				if(code == "success"){
+					var data = xmlDoc.getElementsByTagName("data")[0].firstChild.nodeValue;
+					var jsonData = eval("(" + data + ")");
+					alert(jsonData.name + ", " + jsonData.id + ", " + jsonData.age);
+				}
+			}
+		}
+	}
+	
+	window.onload = function(){ fnSubmit(); }
+</script>
+</head>
+<body>
+<h1>서버로부터 XML타입과 JSON타입의 데이터를 받는 예제</h1>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

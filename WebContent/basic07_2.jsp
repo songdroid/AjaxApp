@@ -25,7 +25,10 @@
 		tel = "333-3333";
 	}
 %>
-<%=name%>,<%=gender%>,<%=addr%>,<%=tel%> 
+<employees>
+	<employee name="<%=name%>" gender="<%=gender%>"
+		addr="<%=addr%>" tel="<%=tel%>"></employee>
+</employees>
 
 
 
